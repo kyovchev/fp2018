@@ -29,18 +29,27 @@ getAvg a b = (a+b)/2
 
 Да се напише и итеративно решение.
 -}
+
 myfib :: Integer -> Integer
-myfib n = undefined
+myfib 0 = 0
+myfib 1 = 1
+mybib n = myfib (n-1) + myfib (n-2)
 
 myfibIterative :: Integer -> Integer
-myfibIterative n = undefined
+myfibIterative n = myfibIterativeHelper n 1 1
+
+myfibIterativeHelper :: Integer -> Integer -> Integer -> Integer
+myFibT n count product
+    | count > n = product
+    | otherwise = myFibT n (count+1) (count-1)
 
 
 {-
 Задача 5. Да се напише функция mygcd a b, която връща НОД(a, b).
 -}
+
 mygcd :: Int -> Int -> Int
-mygcd a b = undefined
+mygcd a b = if b == 0 then a else mygcd b (a `mod` b)
 
 
 {-
