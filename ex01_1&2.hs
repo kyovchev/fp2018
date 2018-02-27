@@ -2,22 +2,26 @@
 Задача 1. Да се напише функция mymin, която приема два аргумента и връща по-малкият от тях.
 -}
 mymin :: Int -> Int -> Int
-mymin a b = undefined
-
+mymin a b = if a > b then b else a
 
 {-
 Задача 2. Да се напише функция mymax, която приема два аргумента и връща по-големият от тях.
 -}
-mymax :: Int -> Int -> Int
-mymax a b = undefined
 
+mymax :: Int -> Int -> Int
+mymax a b 
+  | a > b     = a
+  | otherwise = b
 
 {-
 Задача 3. Да се напише функция myfunc, която пресмята на средно аритметичното от квадратите на 2 числа.
 -}
-myfunc :: Double -> Double -> Double
-myfunc a b = undefined
 
+myfunc :: Double -> Double -> Double
+myfunc a b = getAvg (a^2) (b^2)
+
+getAvg :: Double -> Double -> Double
+getAvg a b = (a+b)/2
 
 {-
 Задача 4. Да се напише myfib, която получава един аргумент n и връща n-тото число на Фибоначи.
