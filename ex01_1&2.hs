@@ -39,9 +39,9 @@ myfibIterative :: Integer -> Integer
 myfibIterative n = myfibIterativeHelper n 1 1
 
 myfibIterativeHelper :: Integer -> Integer -> Integer -> Integer
-myFibT n count product
+myfibIterativeHelper n count product
     | count > n = product
-    | otherwise = myFibT n (count+1) (count-1)
+    | otherwise = myfibIterativeHelper n (count+1) (count-1)
 
 
 {-
