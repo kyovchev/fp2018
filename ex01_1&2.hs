@@ -39,10 +39,8 @@ myfibIterative :: Integer -> Integer
 myfibIterative n = myfibIterativeHelper n 1 1
 
 myfibIterativeHelper :: Integer -> Integer -> Integer -> Integer
-myfibIterativeHelper n count product
-    | count > n = product
-    | otherwise = myfibIterativeHelper n (count+1) (count-1)
-
+myfibIterativeHelper 1 first second = first
+myfibIterativeHelper n first second = myfibIterativeHelper (n-1) second (first+second)
 
 {-
 Задача 5. Да се напише функция mygcd a b, която връща НОД(a, b).
