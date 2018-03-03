@@ -26,11 +26,11 @@ main = do
   процес и намира броя на цифрите на дадено естествено число.
 -}
 countDigits :: Int -> Int
-countDigits n = if n < 10 then 1 else 1 + countDigits (n `div` 10) 
+countDigits n = if n < 10 then 1 else 1 + countDigits (n `div` 10)
 
 
 {-
-  Зад. 2. Да се дефинира функция sumDigits, която генерира линейно рекурсивен 
+  Зад. 2. Да се дефинира функция sumDigits, която генерира линейно рекурсивен
   процес и намира сумата от цифрите на дадено естествено число.
 -}
 sumDigits :: Int -> Int
@@ -38,7 +38,7 @@ sumDigits n = if n < 10 then n else n `mod` 10 + sumDigits (n `div` 10)
 
 
 {-
-  Зад. 3. Да се дефинира функция pow, която генерира линейно рекурсивен процес 
+  Зад. 3. Да се дефинира функция pow, която генерира линейно рекурсивен процес
   и намира x на степен n, където x е реално, а n - естествено число.
 -}
 pow :: Double -> Int -> Double
@@ -46,7 +46,7 @@ pow x n = if n == 0 then 1 else x * pow x (n - 1)
 
 
 {-
-  Зад. 4. Да се дефинира функция sumDigitsIterative, която генерира линейно 
+  Зад. 4. Да се дефинира функция sumDigitsIterative, която генерира линейно
   итеративен процес и намира сумата от цифрите на дадено естествено число.
 -}
 sumDigitsIterative :: Int -> Int
@@ -82,7 +82,7 @@ isPrime n = helper 2
     helper d
       | d == n         = True
       | n `mod` d == 0 = False
-      | otherwise      = helper (d + 1) 
+      | otherwise      = helper (d + 1)
 
 
 {-
@@ -128,8 +128,8 @@ sumPrimes a b = undefined
 -- Code below is needed for test purposes
 checkEqual :: (Eq a, Show a) => String -> a -> a -> IO()
 checkEqual preface actual expected =
-  print ((if null preface then "" else preface ++ ": ") ++ 
-    if (actual /= expected) 
+  print ((if null preface then "" else preface ++ ": ") ++
+    if (actual /= expected)
     then  "expected: " ++ show expected ++ ", but got: " ++ show actual
     else "OK, result: " ++ show actual
   )
