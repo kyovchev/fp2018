@@ -56,13 +56,16 @@ myfunc a b = (a ^ 2 + b ^ 2) / 2
 -}
 myfib :: Integer -> Integer
 myfib n =
-    if n == 0 then 1
-    else if n == 1 then 1
+    if n <= 1 then 1
     else myfib (n - 1) + myfib (n - 2)
 
 
 myfibIterative :: Integer -> Integer
-myfibIterative n = undefined
+myfibIterative n = helper 1 1 1
+  where
+    helper :: Integer -> Integer -> Integer -> Integer
+    helper i prev cur =
+      if i >= n then cur else helper (i + 1) cur (prev + cur)
 
 
 {-
