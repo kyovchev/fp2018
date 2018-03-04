@@ -95,7 +95,7 @@ mymaxdivisor x = go (x - 1)
   в затворения интервал [a .. b].
 -}
 isInside :: Integer -> Integer -> Integer -> Bool
-isInside x a b = (x >= a && x <= b)
+isInside x a b = a <= x && x <= b
 
 
 {-
