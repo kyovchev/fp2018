@@ -1,15 +1,30 @@
 main :: IO()
 main = do
-    print (mymin 1 2)
-    print (mymax 2 1)
-    print (myfunc 2 4)
-    print (mygcd 12 18)
-    print (myfib 4)
-    print (mymaxdivisor 64)
-    print (isInside 6 1 5)
-    print (isInside 2 1 5)
-    print (isLeapYear 2008)
-    print (isValidDate 29 2 2004)
+  checkEqual "mymin 1 2" (mymin 1 2) 1
+  checkEqual "mymax 2 1" (mymax 2 1) 2
+  checkEqual "myfunc 2 4" (myfunc 2 4) 10.0
+  checkEqual "mygcd 12 18" (mygcd 12 18) 6
+  checkEqual "mygcd 7 13" (mygcd 7 13) 1
+  checkEqual "myfib 0" (myfib 0) 1
+  checkEqual "myfib 1" (myfib 1) 1
+  checkEqual "myfib 2" (myfib 2) 2
+  checkEqual "myfib 7" (myfib 7) 21
+  checkEqual "myfibIterative 0" (myfibIterative 0) 1
+  checkEqual "myfibIterative 1" (myfibIterative 1) 1
+  checkEqual "myfibIterative 2" (myfibIterative 2) 2
+  checkEqual "myfibIterative 7" (myfibIterative 7) 21
+  checkEqual "mymaxdivisor 64" (mymaxdivisor 64) 32
+  checkEqual "mymaxdivisor 31" (mymaxdivisor 31) 1
+  checkEqual "isInside 6 1 5" (isInside 6 1 5) False
+  checkEqual "isInside 5 1 5" (isInside 5 1 5) True
+  checkEqual "isLeapYear 2008" (isLeapYear 2008) True
+  checkEqual "isLeapYear 2018" (isLeapYear 2018) False
+  checkEqual "isValidDate 29 2 2004" (isValidDate 29 2 2004) True
+  checkEqual "isValidDate 29 2 2005" (isValidDate 29 2 2005) False
+  checkEqual "isValidDate 30 2 2004" (isValidDate 30 2 2004) False
+  checkEqual "isValidDate 31 6 2018" (isValidDate 31 6 2018) False
+  checkEqual "isValidDate 31 5 2018" (isValidDate 31 5 2018) True
+  checkEqual "isValidDate 4 3 2018" (isValidDate 4 3 2018) True
 
 
 {-
