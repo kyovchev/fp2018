@@ -137,3 +137,4 @@ checkEqual preface actual expected =
     if (actual /= expected)
     then  "expected: " ++ show expected ++ ", but got: " ++ show actual
     else "OK, result: " ++ show actual)
+
