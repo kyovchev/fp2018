@@ -118,17 +118,16 @@ isLeapYear year
   (day, month, year) e валидна.
 -}
 isValidDate :: Integer -> Integer -> Integer -> Bool
-isValidDate day month year =
-    if month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12 then
-        if day >= 1 && day <= 31 then True
-        else False
-    else if month == 2 then
-        if day >= 1 && day <= 29 && isLeapYear year then True
-        else if day >= 1 && day <= 28 &&  isLeapYear year == False then True
-        else False
-    else
-        if day >= 1 && day <= 30 then True
-        else False
+isValidDate day month year
+  | month == 1 ||
+    month == 3 ||
+    month == 5 ||
+    month == 7 ||
+    month == 8 ||
+    month == 10 ||
+    month == 12     = 1 <= day && day <= 31
+  | month == 2      = 1 <= day && day <= 28 || (day == 29 && isLeapYear year)
+  | otherwise       = 1 <= day && day <= 30
 
 
 -- Code below is needed for test purposes
