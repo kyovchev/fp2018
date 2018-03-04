@@ -109,6 +109,7 @@ isLeapYear year
   | isDivBy 4   = True
   | otherwise   = False
   where
+    isDivBy :: Integer -> Bool
     isDivBy a = mod year a == 0
 
 
