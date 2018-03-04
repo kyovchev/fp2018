@@ -82,11 +82,12 @@ mygcd a b =
 за който d < x.
 -}
 mymaxdivisor :: Int -> Int
-mymaxdivisor x = go (x-1) x
+mymaxdivisor x = go (x - 1)
   where
-    go n x
+    go :: Int -> Int
+    go n
       | x `mod` n == 0 = n
-      | otherwise = go (n-1) (x)
+      | otherwise = go (n - 1)
 
 
 {-
