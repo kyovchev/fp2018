@@ -30,8 +30,6 @@ main = do
   checkEqual "sumPrimes 0 1" (sumPrimes 0 1) 0
 
 
-
-
 {-
   Зад. 1. Да се дефинира функция countDigits, която генерира линейно рекурсивен
   процес и намира броя на цифрите на дадено естествено число.
@@ -118,16 +116,13 @@ countOccurences d n = helper n 0
         | otherwise       = helper (n `div` 10) count
 
 
-
-
-
 {-
   Зад. 9. Да се напише предикат isPerfectNumber, който връща дали едно число е
   съвършено, т.е. равно на сумата от делите си.
 -}
 isPerfectNumber :: Int -> Bool
 isPerfectNumber n = helper (n - 1) 0
-    where
+  where
     helper:: Int -> Int -> Bool
     helper augN sumOfFac
         | n == 1              = True
@@ -142,7 +137,7 @@ isPerfectNumber n = helper (n - 1) 0
 -}
 sumPrimeDivisors :: Integer -> Integer
 sumPrimeDivisors n = helper (n - 1) 0
-    where
+  where
     helper:: Integer -> Integer -> Integer
     helper augN sumOfFacPrimes
         | (augN == 0)                       = sumOfFacPrimes
@@ -156,7 +151,7 @@ sumPrimeDivisors n = helper (n - 1) 0
 -}
 sumPrimes :: Integer -> Integer -> Integer
 sumPrimes a b = helper a 0
-    where
+  where
     helper:: Integer -> Integer -> Integer
     helper curr sumOfPrimes
         | (curr - 1) == b = sumOfPrimes
