@@ -136,5 +136,4 @@ checkEqual preface actual expected =
   print ((if null preface then "" else preface ++ ": ") ++
     if (actual /= expected)
     then  "expected: " ++ show expected ++ ", but got: " ++ show actual
-    else "OK, result: " ++ show actual
-)
+    else "OK, result: " ++ show actual)
