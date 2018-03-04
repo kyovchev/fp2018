@@ -109,13 +109,13 @@ isAscending n = n < 10 || (n `mod` 10 >= ((n `div` 10) `mod` 10) && isAscending 
   цифра d в записа на число n.
 -}
 countOccurences :: Int -> Int -> Int
-countOccurences d n = helper d n 0
+countOccurences d n = helper n 0
     where
-    helper :: Int -> Int -> Int -> Int
-    helper d n count
+    helper :: Int -> Int -> Int
+    helper n count
         | n `mod` 10 == 0 = count
-        | n `mod` 10 == d = helper d (n `div` 10) (count + 1)
-        | otherwise       = helper d (n `div` 10) count
+        | n `mod` 10 == d = helper (n `div` 10) (count + 1)
+        | otherwise       = helper (n `div` 10) count
 
 
 
@@ -126,14 +126,14 @@ countOccurences d n = helper d n 0
   съвършено, т.е. равно на сумата от делите си.
 -}
 isPerfectNumber :: Int -> Bool
-isPerfectNumber n = helper n (n - 1) 0
+isPerfectNumber n = helper (n - 1) 0
     where
-    helper:: Int -> Int -> Int -> Bool
-    helper n augN sumOfFac
+    helper:: Int -> Int -> Bool
+    helper augN sumOfFac
         | n == 1              = True
         | n == 0 || augN == 0 = sumOfFac == n
-        | n `mod` augN == 0   = helper n (augN - 1) (sumOfFac + augN)
-        | otherwise           = helper n (augN - 1) sumOfFac
+        | n `mod` augN == 0   = helper (augN - 1) (sumOfFac + augN)
+        | otherwise           = helper (augN - 1) sumOfFac
 
 
 {-
@@ -141,13 +141,13 @@ isPerfectNumber n = helper n (n - 1) 0
   прости делители на едно число.
 -}
 sumPrimeDivisors :: Integer -> Integer
-sumPrimeDivisors n = helper n (n - 1) 0
+sumPrimeDivisors n = helper (n - 1) 0
     where
-    helper:: Integer -> Integer -> Integer -> Integer
-    helper n augN sumOfFacPrimes
+    helper:: Integer -> Integer -> Integer
+    helper augN sumOfFacPrimes
         | (augN == 0)                       = sumOfFacPrimes
-        | n `mod` augN == 0 && isPrime augN = helper n (augN - 1) (sumOfFacPrimes + augN)
-        | otherwise                         = helper n (augN - 1) sumOfFacPrimes
+        | n `mod` augN == 0 && isPrime augN = helper (augN - 1) (sumOfFacPrimes + augN)
+        | otherwise                         = helper (augN - 1) sumOfFacPrimes
 
 
 {-
@@ -155,13 +155,13 @@ sumPrimeDivisors n = helper n (n - 1) 0
   в интервала от a до b.
 -}
 sumPrimes :: Integer -> Integer -> Integer
-sumPrimes a b = helper a b a 0
+sumPrimes a b = helper a 0
     where
-    helper:: Integer -> Integer -> Integer -> Integer -> Integer
-    helper a b curr sumOfPrimes
+    helper:: Integer -> Integer -> Integer
+    helper curr sumOfPrimes
         | (curr - 1) == b = sumOfPrimes
-        | isPrime curr    = helper a b (curr + 1) (sumOfPrimes + curr)
-        | otherwise       = helper a b (curr + 1) sumOfPrimes
+        | isPrime curr    = helper (curr + 1) (sumOfPrimes + curr)
+        | otherwise       = helper (curr + 1) sumOfPrimes
 
 -- Code below is needed for test purposes
 checkEqual :: (Eq a, Show a) => String -> a -> a -> IO()
