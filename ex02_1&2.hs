@@ -20,6 +20,17 @@ main = do
   checkEqual "isAscending 1" (isAscending 1) True
   checkEqual "isAscending 11" (isAscending 11) True
   checkEqual "isAscending 10" (isAscending 10) False
+  checkEqual "countOccurences 2 123" (countOccurences 2 123) 1
+  checkEqual "isPerfectNumber 6" (isPerfectNumber 6) True
+  checkEqual "isPerfectNumber 1" (isPerfectNumber 1) True
+  checkEqual "isPerfectNumber 0" (isPerfectNumber 0) True
+  checkEqual "sumPrimeDivisors 6" (sumPrimeDivisors 6) 5
+  checkEqual "sumPrimeDivisors 1" (sumPrimeDivisors 1) 0
+  checkEqual "sumPrimes 1 5" (sumPrimes 1 5) 10
+  checkEqual "sumPrimes 0 1" (sumPrimes 0 1) 0
+
+
+
 
 {-
   Зад. 1. Да се дефинира функция countDigits, която генерира линейно рекурсивен
@@ -73,12 +84,12 @@ reverseNumber n = helper n 0
   число е просто.
   Забележка: Числото 1 не е нито просто, нито съставно.
 -}
-isPrime :: Int -> Bool
+isPrime :: Integer -> Bool
 isPrime 1 = False
 isPrime 2 = True
 isPrime n = helper 2
   where
-    helper :: Int -> Bool
+    helper :: Integer -> Bool
     helper d
       | d == n         = True
       | n `mod` d == 0 = False
@@ -98,7 +109,16 @@ isAscending n = n < 10 || (n `mod` 10 >= ((n `div` 10) `mod` 10) && isAscending 
   цифра d в записа на число n.
 -}
 countOccurences :: Int -> Int -> Int
-countOccurences d n = undefined
+countOccurences d n = helper n 0
+    where
+    helper :: Int -> Int -> Int
+    helper n count
+        | n `mod` 10 == 0 = count
+        | n `mod` 10 == d = helper (n `div` 10) (count + 1)
+        | otherwise       = helper (n `div` 10) count
+
+
+
 
 
 {-
@@ -106,15 +126,28 @@ countOccurences d n = undefined
   съвършено, т.е. равно на сумата от делите си.
 -}
 isPerfectNumber :: Int -> Bool
-isPerfectNumber _ = undefined
+isPerfectNumber n = helper (n - 1) 0
+    where
+    helper:: Int -> Int -> Bool
+    helper augN sumOfFac
+        | n == 1              = True
+        | n == 0 || augN == 0 = sumOfFac == n
+        | n `mod` augN == 0   = helper (augN - 1) (sumOfFac + augN)
+        | otherwise           = helper (augN - 1) sumOfFac
 
 
 {-
   Зад. 10. Да се дефинира функция sumPrimeDivisors, която намира сумата на всички
   прости делители на едно число.
 -}
-sumPrimeDivisors :: Int -> Int
-sumPrimeDivisors _ = undefined
+sumPrimeDivisors :: Integer -> Integer
+sumPrimeDivisors n = helper (n - 1) 0
+    where
+    helper:: Integer -> Integer -> Integer
+    helper augN sumOfFacPrimes
+        | (augN == 0)                       = sumOfFacPrimes
+        | n `mod` augN == 0 && isPrime augN = helper (augN - 1) (sumOfFacPrimes + augN)
+        | otherwise                         = helper (augN - 1) sumOfFacPrimes
 
 
 {-
@@ -122,8 +155,13 @@ sumPrimeDivisors _ = undefined
   в интервала от a до b.
 -}
 sumPrimes :: Integer -> Integer -> Integer
-sumPrimes a b = undefined
-
+sumPrimes a b = helper a 0
+    where
+    helper:: Integer -> Integer -> Integer
+    helper curr sumOfPrimes
+        | (curr - 1) == b = sumOfPrimes
+        | isPrime curr    = helper (curr + 1) (sumOfPrimes + curr)
+        | otherwise       = helper (curr + 1) sumOfPrimes
 
 -- Code below is needed for test purposes
 checkEqual :: (Eq a, Show a) => String -> a -> a -> IO()
